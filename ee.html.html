@@ -1,0 +1,340 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sorry Sana 🤍</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(135deg,
+                    #ffe6ea,
+                    #fff5f7,
+                    #ffd6df);
+
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 40px 30px;
+            border-radius: 25px;
+
+            text-align: center;
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.15);
+
+            animation: appear 1.2s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            font-size: 70px;
+            animation: heartbeat 1.4s infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            25% {
+                transform: scale(1.15);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+
+            60% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #d6336c;
+            margin-bottom: 15px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        #typingText {
+            min-height: 120px;
+            color: #444;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        button {
+            border: none;
+            padding: 14px 25px;
+            margin: 8px;
+
+            border-radius: 30px;
+
+            background: #d6336c;
+            color: white;
+
+            font-size: 16px;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #b92759;
+        }
+
+        #message {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+
+            background: #fff0f3;
+            border-radius: 18px;
+
+            color: #555;
+            line-height: 1.8;
+
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .signature {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d6336c;
+            font-weight: bold;
+        }
+
+        #songStatus {
+            margin-top: 10px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        footer {
+            margin-top: 25px;
+            color: #aaa;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <div class="heart">🤍</div>
+
+        <h1>Sana, can I tell you something?</h1>
+
+        <p class="subtitle">
+            There is something I have wanted to say sincerely.
+        </p>
+
+        <!-- Typing apology -->
+        <p id="typingText"></p>
+
+        <!-- Buttons -->
+        <button onclick="showMessage()">
+            One more thing...
+        </button>
+
+        <button onclick="toggleSong()" id="songButton">
+            🎵 Play Song
+        </button>
+
+        <p id="songStatus">
+            Click the button to play the song 🤍
+        </p>
+
+        <!-- Final message -->
+        <div id="message">
+
+            <p>
+                I don't expect you to forget the past,
+                and I don't expect you to forgive me immediately.
+            </p>
+
+            <br>
+
+            <p>
+                I just wanted to sincerely say:
+                <strong>I'm sorry.</strong>
+            </p>
+
+            <br>
+
+            <p>
+                I hope you're doing well and that you have
+                happiness and peace in your life.
+            </p>
+
+            <p class="signature">
+                Take care, Sana 🤍
+            </p>
+
+        </div>
+
+        <footer>
+            Made with sincerity 🤍
+        </footer>
+
+    </div>
+
+    <!-- =========================
+         SONG
+         ========================= -->
+
+    <audio id="song" loop>
+        <source src="song.mp3.mp3.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <script>
+
+        // =========================
+        // TYPING ANIMATION
+        // =========================
+
+        const text =
+            "I feel sorry about whatever I did to you in the past. " +
+            "I know I may have hurt you, and I genuinely regret it. " +
+            "I can't change what happened, but I can accept my mistakes " +
+            "and learn from them. I am truly sorry for making you feel bad.";
+
+        let index = 0;
+
+        function typeText() {
+
+            if (index < text.length) {
+
+                document.getElementById("typingText").innerHTML +=
+                    text.charAt(index);
+
+                index++;
+
+                setTimeout(typeText, 35);
+            }
+        }
+
+        typeText();
+
+
+        // =========================
+        // SHOW FINAL MESSAGE
+        // =========================
+
+        function showMessage() {
+
+            const message = document.getElementById("message");
+
+            message.style.display = "block";
+        }
+
+
+        // =========================
+        // PLAY / PAUSE SONG
+        // =========================
+
+        const song = document.getElementById("song");
+
+        const songButton =
+            document.getElementById("songButton");
+
+        const songStatus =
+            document.getElementById("songStatus");
+
+
+        function toggleSong() {
+
+            if (song.paused) {
+
+                song.play()
+                    .then(function () {
+
+                        songButton.innerHTML =
+                            "⏸ Pause Song";
+
+                        songStatus.innerHTML =
+                            "🎵 Playing your song... 🤍";
+
+                    })
+                    .catch(function (error) {
+
+                        songStatus.innerHTML =
+                            "❌ Song could not play. Check the song file name.";
+
+                        console.log(error);
+
+                    });
+
+            } else {
+
+                song.pause();
+
+                songButton.innerHTML =
+                    "🎵 Play Song";
+
+                songStatus.innerHTML =
+                    "Song paused 🤍";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
